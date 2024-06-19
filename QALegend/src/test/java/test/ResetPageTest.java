@@ -12,18 +12,18 @@ import utilities.ExcelUtility;
 
 public class ResetPageTest extends Base{
 	
+	
 	@Test
-	public void verifyForgotpasswordWithInvalidEmailid() 
-	{
-		String emailid=ExcelUtility.readStringData(0, 0, Constants.RESET_PAGE);
-	    String expected_text=ExcelUtility.readStringData(0, 1, Constants.RESET_PAGE);
-	    
-        LoginPage login = new LoginPage(driver);
-	    login.clikOnForgotePassword();
-	    ResetPage reset = new ResetPage(driver);
-	    reset.enterEmailidToReset();
-        reset.clickOnSubmitButton();
-        String actual_text = reset.getTextmsgOfResetmailfail(emailid);
-        Assert.assertEquals(actual_text, expected_text,Messages.MESSAGE);
-	 }
+	public void verifyLoginPageWithInvalidEmail() {
+		  String emailid = ExcelUtility.readStringData(0, 0,Constants.RESET_PAGE);
+		  String expected_text = ExcelUtility.readStringData(1, 0, Constants.RESET_PAGE) ;
+		 LoginPage login = new LoginPage(driver);
+		 login.forgotPasswordelement();
+		    ResetPage reset = new ResetPage(driver);
+		    reset.getEmailidField(emailid);
+	        reset.clickpasswordreset_button();
+	        String actual_text = reset.getTextmsgOfResetmailfail();
+	        System.out.println(actual_text);
+	       Assert.assertEquals(actual_text, expected_text,"invalid");
+	}
 }

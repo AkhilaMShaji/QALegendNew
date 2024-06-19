@@ -14,35 +14,33 @@ public class ResetPage {
 		 PageFactory.initElements(driver,this);
 		}
 		
-		@FindBy(xpath="//a[@class='btn btn-link']")
-		WebElement forgot_password;
-		
-		@FindBy(xpath="//input[@class='form-control']")
-		WebElement email_field ;
-
-		@FindBy(xpath="//button[@type='submit']")
-				WebElement submitbutton;
-		
-		@FindBy(xpath = "//span[@class='help-block']")
-		WebElement passwordresetfailure_text ;
-		
-		public void clickOnForgotPasswordField() {
+	
+		    @FindBy(xpath = "//a[@class='btn btn-link']")
+		    WebElement forgot_password;
+		    @FindBy(xpath = "//input[@id='email']")
+			WebElement email_field ;
+			@FindBy(xpath = "//button[@type='submit']")
+			WebElement passwordreset_button ;
+			@FindBy(xpath = "//span[@class='help-block']")
+			WebElement passwordresetfailure_text ;
+		  
+		  public ResetPage forgotPasswordelement() 
+		  {
 			forgot_password.click();
-		}
-		
-		public String enterEmailidToReset() {
-			String emailid=email_field.getText();
-			return emailid;
-		}
-		public void clickOnSubmitButton() {
-			submitbutton.click();
-		}
-		public String getTextmsgOfResetmailfail(String mailidtext) 
-		{
-			String textmsg = passwordresetfailure_text.getText();
-			return textmsg;
-			
-		}
-		
-		
+			return new ResetPage(driver);
+			  
+		  }
+		  public void getEmailidField(String emailid) 
+			{
+				email_field.sendKeys(emailid);
+			}
+		  public void clickpasswordreset_button() 
+			{
+				passwordreset_button.click();
+			}
+		  public String getTextmsgOfResetmailfail() 
+			{
+				String actual_text = passwordresetfailure_text.getText();
+				return actual_text;
+			}
 	}

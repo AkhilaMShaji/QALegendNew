@@ -5,9 +5,9 @@
     <classes>
       <class name="test.UserTest">
         <methods>
-          <include name="verifyAddUser"/>
           <include name="closeBrowser"/>
           <include name="setup"/>
+          <include name="verifyDeleteUserWhoIsRecentlyAdded"/>
         </methods>
       </class> <!-- test.UserTest -->
     </classes>

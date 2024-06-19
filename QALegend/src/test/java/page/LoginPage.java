@@ -28,7 +28,8 @@ WebElement error_message;
 @FindBy(xpath = "//a[@class='btn btn-link']")
 WebElement forgot_password;
 
-
+@FindBy(xpath = "//a[@class='btn btn-link']")
+WebElement forgot_password1;
 public void enterUserName(String username) 
 {
 	username_field.sendKeys(username);  
@@ -56,7 +57,12 @@ public String getInvalidLoginUserText()
 String user = error_message.getText();
 return user;
 }
-
+public ResetPage forgotPasswordelement() 
+{
+	forgot_password.click();
+	return new ResetPage(driver);
+	  
+}
 public void clikOnForgotePassword() {
 	// TODO Auto-generated method stub
 	
