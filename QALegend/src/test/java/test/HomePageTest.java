@@ -25,10 +25,10 @@ public class HomePageTest extends Base{
 	    HomePage home =  login.clickOnLoginButton();
 	   String actual_title = home.getActualTitle();
 	    System.out.println("The title of the page is " +actual_title);
-		Assert.assertEquals(actual_title, expected_title,Messages.LOGIN_FAILURE);
+		Assert.assertEquals(actual_title, expected_title,Messages.HOME_TITEMISMATCH);
 	}
   
-	@Test
+	@Test(groups = "Sanity")
 
 	public void verifyUserLoginDateMatchesSystemDate() {
 	    String username = ExcelUtility.readStringData(0, 1,Constants.HOME_PAGE);
@@ -41,7 +41,7 @@ public class HomePageTest extends Base{
 		System.out.println("Date Text" + date );
 		String system_date = home.getSystemDate();
         System.out.println("The system date is " +system_date);
-        Assert.assertEquals(date, system_date,Messages.LOGIN_FAILURE);
+        Assert.assertEquals(date, system_date,Messages.HOME_DATEMISMATCH);
 		
 		
 	}

@@ -15,7 +15,7 @@ import utilities.ExcelUtility;
 public class LoginPageTest extends Base{
 	
 	
-	@Test
+	@Test(groups = "Sanity")
 	public void verifyUserLoginWithValidCredentials() {
 		String username=ExcelUtility.readStringData(1, 1, Constants.LOGIN_PAGE);
 		String password=ExcelUtility.readIntegerData(0, 1, Constants.LOGIN_PAGE);
@@ -30,13 +30,13 @@ public class LoginPageTest extends Base{
 	}
 
 	
-	@Test
+	@Test(groups = "Regression")
 	public void verifyLoginPageTitle() {
 	 String expectedtitle=ExcelUtility.readStringData(0, 0, Constants.LOGIN_PAGE);
 	 
 	 LoginPage login=new LoginPage(driver);
 	 String actualtitle= login.getTitle();
-		Assert.assertEquals(actualtitle, expectedtitle,"ivalidtitle");
+		Assert.assertEquals(actualtitle, expectedtitle,Messages.HOME_TITEMISMATCH);
 	}
 	
 	

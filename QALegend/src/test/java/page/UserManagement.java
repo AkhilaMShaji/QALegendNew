@@ -15,26 +15,28 @@ public class UserManagement {
 		PageFactory.initElements(driver, this);
 	}
 	@FindBy(xpath = "//i[@class='fa fa-user']//following-sibling::span")
-	WebElement users_option;
+	WebElement users;
 	@FindBy(xpath = "//i[@class='fa fa-briefcase']//following-sibling::span")
-	WebElement roles_option;
+	WebElement roles;
 	@FindBy(xpath = "//i[@class='fa fa-handshake-o']//following-sibling::span")
-	WebElement agents_option;
-	public boolean checkUsersOptionAvailability() {
+	WebElement agents;
+	public boolean usersOptionInUserManagement() {
 
-		boolean usersOption = users_option.isDisplayed();
+
+		boolean usersOption = users.isDisplayed();
 		return usersOption;
 	}
 
-	public boolean checkRolesOptionAvailability() {
+	public boolean rolesOptionInUserManagement() {
 
-		boolean rolesOption = roles_option.isDisplayed();
+
+		boolean rolesOption = roles.isDisplayed();
 		return rolesOption;
 
 	}
-	public boolean checkAgentsOptionAvailability() {
+	public boolean agentsOptionInUserManagement() {
 
-		boolean agentsOption = agents_option.isDisplayed();
+		boolean agentsOption = agents.isDisplayed();
 		return agentsOption;
 
 	}

@@ -9,6 +9,7 @@ import constants.Constants;
 import page.HomePage;
 import page.LoginPage;
 import page.User;
+import sun.tools.jconsole.Messages;
 import utilities.ExcelUtility;
 import utilities.RandomDataUtility;
 
@@ -46,7 +47,7 @@ public void verifyAddUser(){
 		    String actual_result = home.getTextofProfile();
 		    System.out.println(actual_result);
 		    String expected_result =ExcelUtility.readStringData(0, 3, Constants.USER);
-		    Assert.assertEquals(actual_result, expected_result, "invalid");
+		    Assert.assertEquals(actual_result, expected_result, Messages.USER_DATA);
 }
 	@Test
 public void verifySearchUser() {
@@ -70,6 +71,8 @@ public void verifySearchUser() {
 			
 			
 	}
+	
+	
 	@Test
 	
 	public void verifyDeleteUserWhoIsRecentlyAdded() {
@@ -103,8 +106,12 @@ public void verifySearchUser() {
 		    user1.enterSearchValue(password2);
 		    user1.clickDeleteButtoun();
 		    user1.clickOkButtoun();
-		    Assert.assertEquals("User deleted successfully","User deleted successfully", "Deletion not successful");
+		    String actualresult=ExcelUtility.readStringData(3, 0, Constants.USER);
+		    String expectedresult=ExcelUtility.readStringData(4, 0, Constants.USER);
+		    Assert.assertEquals(actualresult, expectedresult, "Unsuccesful");
 	}
+	
+	
 	@Test
 	
 	public void loginOfANewUser() {
@@ -139,6 +146,7 @@ public void verifySearchUser() {
 		    HomePage home1 = new HomePage(driver);
 		    home1.clickOnSignoutDashBoad();
 		    home1.clickOnSignoutButton();
+		    Assert.assertEquals("login successful", "login successful", constants.Messages.USER_LOGINUNSUCSSES);
 	}
 
 }

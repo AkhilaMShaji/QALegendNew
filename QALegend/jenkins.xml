@@ -8,12 +8,8 @@
 	  <parameter name="browser" value="Chrome"></parameter>
 	  <parameter name="baseurl" value="https://qalegend.com/billing/public/login"></parameter>
     <classes>
-        <class name = "test.LoginPageTest"/>
-        
-    </classes>
-  
-    
+        <class name = "test.HomePage"/>
+     </classes>
   </test> <!-- Test -->
-	
-	
-</suite> <!-- Suite -->
+  
+   </suite> <!-- Suite -->

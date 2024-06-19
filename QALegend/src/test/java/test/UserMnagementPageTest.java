@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 
 import automationcore.Base;
 import constants.Constants;
+import constants.Messages;
 import page.HomePage;
 import page.LoginPage;
 import page.UserManagement;
@@ -29,11 +30,10 @@ public class UserMnagementPageTest extends Base {
 	    home.applicationTourPopupBoxClose();
 	    home.clickOnUserManagementbutton();
 	    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-	    
 	    UserManagement usermanagement= new  UserManagement (driver);
-	    usermanagement.checkRolesOptionAvailability();
-	    usermanagement.checkUsersOptionAvailability();
-	    usermanagement.checkAgentsOptionAvailability();
-	    Assert.assertEquals("elements displayed", "elements displayed");
+	    usermanagement.rolesOptionInUserManagement();
+	    usermanagement.usersOptionInUserManagement();
+	    usermanagement.agentsOptionInUserManagement();
+	    Assert.assertEquals("elements displayed", "elements displayed", Messages.USERMANAGEMENTELEMENTS_MISMATCH);
 	}
 }

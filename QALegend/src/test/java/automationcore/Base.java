@@ -25,21 +25,20 @@ import utilities.WaitUtility;
 public class Base {
 	
 	protected	WebDriver driver ;
-	public Properties prop;
-	public FileInputStream fs;
-	public  void initialisebrowser(String browser) throws IOException 
+	//public Properties prop;
+	//public FileInputStream fs;
+		
+	public  void initialisebrowser(String browser) 
 	{
-		try {
-			prop= new Properties();
-			fs= new FileInputStream(Constants.CONFIGFILE);
+	/*	try {
+			prop = new Properties();
+			fs = new FileInputStream(Constants.CONFIGFILE);
 			prop.load(fs);
 		}
-		catch(FileNotFoundException e)
-		{
-			
+		catch (FileNotFoundException e) {
 			e.printStackTrace();
-		}
-			if(browser.equals("Chrome"))
+		}*/
+		if(browser.equals("Chrome"))
 				{
 				driver = new ChromeDriver();
 				}
@@ -50,32 +49,35 @@ public class Base {
 			else if ( browser.equals("Firefox")) {
 				driver = new FirefoxDriver();
 				
+
+				
 			}
 			else {
 				throw new RuntimeException("Invalid browser received");
 			}
-			driver.get(prop.getProperty("url"));
-			driver.manage().window().maximize();
+		  
+		//  driver.get(prop.getProperty("url"));
+		  driver.manage().window().maximize();
 			
 			
 		}
-	@BeforeMethod
-	@Parameters({"browser","baseurl"})
-	  public void setup(String browsername , String url) throws IOException 
+	@BeforeMethod(alwaysRun = true)
+	@Parameters({"browser" , "baseurl"})
+	  public void setup(String browsername , String url ) 
 	  { 
 		
 		  initialisebrowser(browsername); 
 		  driver.get(url);
-		  driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(WaitUtility.IMPLICIT_WAIT));
+		  
+		  WaitUtility.waitUsingImplicitWait(driver);
 		  
 	  }
-	  
-	@AfterMethod
+	@AfterMethod(alwaysRun = true)
 	public void closeBrowser(ITestResult result) throws IOException {
 		if (result.getStatus()== ITestResult.FAILURE) {
 			takeScreenshot(result);
 		}
-		//  driver.close();
+		  driver.close();
 	 }
 
 

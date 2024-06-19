@@ -24,6 +24,6 @@ public class ResetPageTest extends Base{
 	        reset.clickpasswordreset_button();
 	        String actual_text = reset.getTextmsgOfResetmailfail();
 	        System.out.println(actual_text);
-	       Assert.assertEquals(actual_text, expected_text,"invalid");
+	       Assert.assertEquals(actual_text, expected_text,Messages.INVALID_PLUGIN_PATH);
 	}
 }
