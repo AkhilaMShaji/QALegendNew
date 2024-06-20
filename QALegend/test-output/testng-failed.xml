@@ -7,8 +7,10 @@
     <classes>
       <class name="test.LoginPageTest">
         <methods>
+          <include name="verifyUserLoginWithInvalidCredential" invocation-numbers="0 1 2"/>
           <include name="verifyUserLoginWithValidCredentials"/>
           <include name="closeBrowser"/>
+          <include name="verifyLoginPageTitle"/>
           <include name="setup"/>
         </methods>
       </class> <!-- test.LoginPageTest -->

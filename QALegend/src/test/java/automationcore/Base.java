@@ -23,71 +23,61 @@ import constants.Constants;
 import utilities.WaitUtility;
 
 public class Base {
-	
-	protected	WebDriver driver ;
-	//public Properties prop;
-	//public FileInputStream fs;
-		
-	public  void initialisebrowser(String browser) 
-	{
-	/*	try {
+
+	protected WebDriver driver;
+	public Properties prop;
+	public FileInputStream fs;
+
+	public void initialisebrowser(String browser) throws IOException {
+		try {
 			prop = new Properties();
 			fs = new FileInputStream(Constants.CONFIGFILE);
 			prop.load(fs);
-		}
-		catch (FileNotFoundException e) {
+		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-		}*/
-		if(browser.equals("Chrome"))
-				{
-				driver = new ChromeDriver();
-				}
-				
-			else if(browser.equals("edge")	)	{
-				driver = new EdgeDriver();
-			}
-			else if ( browser.equals("Firefox")) {
-				driver = new FirefoxDriver();
-				
-
-				
-			}
-			else {
-				throw new RuntimeException("Invalid browser received");
-			}
-		  
-		//  driver.get(prop.getProperty("url"));
-		  driver.manage().window().maximize();
-			
-			
 		}
-	@BeforeMethod(alwaysRun = true)
-	@Parameters({"browser" , "baseurl"})
-	  public void setup(String browsername , String url ) 
-	  { 
-		
-		  initialisebrowser(browsername); 
-		  driver.get(url);
-		  
-		  WaitUtility.waitUsingImplicitWait(driver);
-		  
-	  }
-	@AfterMethod(alwaysRun = true)
-	public void closeBrowser(ITestResult result) throws IOException {
-		if (result.getStatus()== ITestResult.FAILURE) {
-			takeScreenshot(result);
+		if (browser.equals("Chrome")) {
+			driver = new ChromeDriver();
 		}
-		  driver.close();
-	 }
 
+		else if (browser.equals("edge")) {
+			driver = new EdgeDriver();
+		} else if (browser.equals("Firefox")) {
+			driver = new FirefoxDriver();
 
-	public void takeScreenshot(ITestResult result ) throws IOException 
-	{
-		TakesScreenshot takescreenshot = (TakesScreenshot) driver ;
-		File screenshot = takescreenshot.getScreenshotAs(OutputType.FILE); 
-		FileUtils.copyFile(screenshot, new File("./ScreenShot/" +result.getName()+ ".png" ));
-		
-		
+		} else {
+			throw new RuntimeException("Invalid browser received");
+		}
+
+		driver.get(prop.getProperty("url"));
+		driver.manage().window().maximize();
+
 	}
 
-			}
+	@BeforeMethod(alwaysRun = true)
+	@Parameters({ "browser", "baseurl" })
+	public void setup(String browsername, String url) throws IOException {
+
+		initialisebrowser(browsername);
+		driver.get(url);
+
+		WaitUtility.waitUsingImplicitWait(driver);
+
+	}
+
+	@AfterMethod(alwaysRun = true)
+	public void closeBrowser(ITestResult result) throws IOException {
+		if (result.getStatus() == ITestResult.FAILURE) {
+			takeScreenshot(result);
+		}
+		driver.close();
+	}
+
+	public void takeScreenshot(ITestResult result) throws IOException {
+		TakesScreenshot takescreenshot = (TakesScreenshot) driver;
+		File screenshot = takescreenshot.getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(screenshot, new File("./ScreenShot/" + result.getName() + ".png"));
+
+	}
+
+}

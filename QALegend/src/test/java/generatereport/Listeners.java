@@ -90,6 +90,6 @@ public class Listeners implements ITestListener {
 		public void onFinish(ITestContext context) {
 
 			ITestListener.super.onFinish(context);
-			extent.flush();//to generate report
+			extent.flush();
 		}
 	 }		

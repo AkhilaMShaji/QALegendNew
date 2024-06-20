@@ -13,9 +13,20 @@
     <classes>
       <class name="test.HomePageTest">
         <methods>
+          <include name="closeBrowser"/>
+          <include name="setup"/>
           <include name="getPageTitle"/>
+          <include name="verifyUserLoginDateMatchesSystemDate"/>
         </methods>
       </class> <!-- test.HomePageTest -->
+      <class name="test.LoginPageTest">
+        <methods>
+          <include name="verifyUserLoginWithValidCredentials"/>
+          <include name="closeBrowser"/>
+          <include name="verifyLoginPageTitle"/>
+          <include name="setup"/>
+        </methods>
+      </class> <!-- test.LoginPageTest -->
     </classes>
   </test> <!-- All Test Cases(failed) -->
 </suite> <!-- Failed suite [QaLegend Suite] -->
